@@ -7,7 +7,8 @@ ext {
             constraintlayout: "2.0.4",
             jUnit           : "4.+",
             testImpl        : "1.1.2",
-            espresso        : "3.3.0"
+            espresso        : "3.3.0",
+            room            : "2.2.5",
     ]
 
     libraries = [
@@ -18,7 +19,9 @@ ext {
             constraintlayout: "androidx.constraintlayout:constraintlayout:$versions.constraintlayout",
             jUnit           : "junit:junit:$versions.jUnit",
             testImpl        : "androidx.test.ext:junit:$versions.testImpl",
-            espresso        : "androidx.test.espresso:espresso-core:$versions.espresso"
+            espresso        : "androidx.test.espresso:espresso-core:$versions.espresso",
+            room            : "androidx.room:room-ktx:$versions.room",
+            kapt            : "androidx.room:room-compiler:$versions.room"
     ]
 }
 

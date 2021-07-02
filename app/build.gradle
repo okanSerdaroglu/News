@@ -1,7 +1,11 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
+
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
 
 apply from: '../dependencies.gradle'
 
@@ -24,7 +28,8 @@ android {
         prod {
             dimension "version"
             applicationIdSuffix ".prod"
-            buildConfigField("String", "BASE_URL", "\"https://newsapi.org/\"")
+            buildConfigField "String", "BASE_URL", "\"https://newsapi.org/\""
+            buildConfigField "String", "API_KEY", localProperties['API_KEY']
         }
     }
 
@@ -43,8 +48,8 @@ android {
     }
 }
 
-dependencies {
 
+dependencies {
     implementation libraries.kotlin
     implementation libraries.core
     implementation libraries.androidX
@@ -53,4 +58,8 @@ dependencies {
     testImplementation libraries.jUnit
     androidTestImplementation libraries.testImpl
     androidTestImplementation libraries.espresso
+
+    // room 
+    implementation libraries.room
+    kapt libraries.kapt
 }
