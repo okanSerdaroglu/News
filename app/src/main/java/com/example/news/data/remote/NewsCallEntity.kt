@@ -8,4 +8,10 @@ class NewsCallEntity(
     val category: String,
     val language: String,
     val country: String
-)
+) {
+    override fun equals(other: Any?): Boolean {
+        return id == (other as NewsCallEntity).id
+                && description == other.description
+                && category == other.category
+    }
+}

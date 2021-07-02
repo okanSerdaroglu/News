@@ -59,7 +59,10 @@ dependencies {
     androidTestImplementation libraries.testImpl
     androidTestImplementation libraries.espresso
 
-    // room 
+    // room
     implementation libraries.room
     kapt libraries.kapt
+
+    // testImpl
+    testImplementation libraries.truth
 }
