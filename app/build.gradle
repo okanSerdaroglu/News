@@ -83,6 +83,10 @@ dependencies {
     implementation libraries.hiltViewModel
     kapt libraries.hiltOtherKapt
 
+    // retrofit
+    implementation libraries.retrofit
+    implementation libraries.gson
+
 
     androidTestImplementation libraries.roomTestImpl
     androidTestImplementation libraries.coreTesting
@@ -92,4 +96,5 @@ dependencies {
 
     androidTestImplementation libraries.hiltTest
     kaptAndroidTest libraries.hiltTestKapt
+
 }
