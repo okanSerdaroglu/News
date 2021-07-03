@@ -86,7 +86,7 @@ dependencies {
     // retrofit
     implementation libraries.retrofit
     implementation libraries.gson
-
+    implementation libraries.interceptor
 
     androidTestImplementation libraries.roomTestImpl
     androidTestImplementation libraries.coreTesting
