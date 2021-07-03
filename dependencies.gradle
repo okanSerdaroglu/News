@@ -9,7 +9,10 @@ ext {
             testImpl        : "1.1.2",
             espresso        : "3.3.0",
             room            : "2.2.5",
-            test        : "1.0.1"
+            test            : "1.0.1",
+            coreTesting     : "2.1.0",
+            coroutines      : "1.2.1",
+            jUnitAndroidTest: "4.13.2"
     ]
 
     libraries = [
@@ -23,7 +26,11 @@ ext {
             espresso        : "androidx.test.espresso:espresso-core:$versions.espresso",
             room            : "androidx.room:room-ktx:$versions.room",
             kapt            : "androidx.room:room-compiler:$versions.room",
-            truth           : "com.google.truth:truth:$versions.test"
+            truth           : "com.google.truth:truth:$versions.test",
+            roomTestImpl    : "androidx.room:room-testing:$versions.room",
+            coreTesting     : "androidx.arch.core:core-testing:$versions.coreTesting",
+            coroutines      : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutines",
+            jUnitAndroidTest: "junit:junit:$versions.jUnitAndroidTest"
     ]
 }
 

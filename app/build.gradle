@@ -46,6 +46,15 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    sourceSets {
+        androidTest {
+            java.srcDirs += "src/sharedTest/java"
+        }
+        test {
+            java.srcDirs += "src/sharedTest/java"
+        }
+    }
 }
 
 
@@ -65,4 +74,10 @@ dependencies {
 
     // testImpl
     testImplementation libraries.truth
+
+    androidTestImplementation libraries.roomTestImpl
+    androidTestImplementation libraries.coreTesting
+    androidTestImplementation libraries.coroutines
+    androidTestImplementation libraries.truth
+    androidTestImplementation libraries.jUnitAndroidTest
 }
