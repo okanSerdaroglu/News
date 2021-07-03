@@ -1,6 +1,5 @@
 package com.example.news.data
 
-import com.example.news.data.remote.NewsCallEntity
 
 data class News(
     val id: String,
