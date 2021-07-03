@@ -15,6 +15,6 @@ interface NewsDao {
     suspend fun insertNews(news: NewsCacheEntity)
 
     @Query("SELECT * FROM news_header")
-    fun getAllNews(): Flow<List<NewsCacheEntity>>
+    fun getAllNews(): Flow<List<NewsCacheEntity>?>
 
 }

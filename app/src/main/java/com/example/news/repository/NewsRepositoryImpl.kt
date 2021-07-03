@@ -1,7 +1,6 @@
 package com.example.news.repository
 
 import com.example.news.data.News
-import com.example.news.data.local.NewsCacheEntity
 import com.example.news.data.local.NewsCacheMapper
 import com.example.news.data.remote.NewsCallMapper
 import com.example.news.util.Constants
@@ -25,35 +24,39 @@ constructor(
         }
     }
 
-    override fun getAllNews(page: Int): Flow<Resource<List<News>>> = flow {
+    override fun getAllNews(page: Int): Flow<Resource<List<News>?>> = flow {
         emit(Resource.loading())
         val response = remoteDataSource.getAllNews(page = page)
         if (response.isSuccessful) {
             response.body()?.let { newsResponse ->
-                if (!newsResponse.results.isNullOrEmpty()) {
-                    val news = newsResponse.results.map { callNews ->
-                        callMapper.mapFromEntity(callNews)
+                newsResponse.results?.let { results ->
+                    val news = results.map {
+                        callMapper.mapFromEntity(it)
                     }
                     insertNews(news)
                     emit(Resource.success(news))
-                } else {
-                    getAllNewsDB(page = page)
+                } ?: getAllNewsDB(page = page).collect {
+                    emit(it)
                 }
-            } ?: getAllNewsDB(page = page)
+            } ?: getAllNewsDB(page = page).collect {
+                emit(it)
+            }
         } else {
-            getAllNewsDB(page = page)
+            getAllNewsDB(page = page).collect {
+                emit(it)
+            }
         }
     }
 
-    override fun getAllNewsDB(page: Int): Flow<Resource<List<News>>> = flow {
+    override fun getAllNewsDB(page: Int) = flow {
         localDataSource.getAllNews(page).collect { cacheNews ->
-            val news = cacheNews.map {
-                cacheMapper.mapFromEntity(it)
-            }
-            if (news.isNullOrEmpty()) {
-                emit(Resource.error(Constants.NEWS_NOT_FOUND, null))
-            } else {
+            if (!cacheNews.isNullOrEmpty()) {
+                val news = cacheNews.map {
+                    cacheMapper.mapFromEntity(it)
+                }
                 emit(Resource.success(news))
+            } else {
+                emit(Resource.error(Constants.NEWS_NOT_FOUND, null))
             }
         }
     }

@@ -14,7 +14,7 @@ import org.junit.runner.Description
  * Some functions on the view model use coroutine scope (Suspend call uses Main Dispatchers)
  *
  * When we run tests on the test package we get an error that "Module with the Main dispatcher had failed to initialize.
- * For tests Dispatchers.setMain from kotlinx-coroutines-test module can be used"
+ * For tests Dispatchers.setMain from kotlinX-coroutines-test module can be used"
  *
  * Test package hasn't Main dispatchers (jvm). But android test package has it.
  *
