@@ -22,7 +22,8 @@ ext {
             viewModel       : "2.2.0",
             fragment        : "1.2.5",
             coroutinesTest  : "1.2.1",
-            mockito         : "3.6.28"
+            mockito         : "3.6.28",
+            navigation      : "2.3.2"
     ]
 
     libraries = [
@@ -54,7 +55,9 @@ ext {
             fragment        : "androidx.fragment:fragment-ktx:$versions.fragment",
             coroutinesTest  : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutinesTest",
             mockito         : "org.mockito:mockito-core:$versions.mockito",
-            mockitoInline   : "org.mockito:mockito-inline:$versions.mockito"
+            mockitoInline   : "org.mockito:mockito-inline:$versions.mockito",
+            navigation      : "androidx.navigation:navigation-fragment-ktx:$versions.navigation",
+            navigationPlugin: "androidx.navigation:navigation-ui-ktx:$versions.navigation"
     ]
 }
 

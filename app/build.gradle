@@ -92,6 +92,10 @@ dependencies {
     implementation libraries.viewModel
     implementation libraries.fragment
 
+    // Navigation
+    implementation libraries.navigation
+    implementation libraries.navigationPlugin
+
     testImplementation libraries.jUnit
     testImplementation libraries.coroutinesTest
     testImplementation libraries.coreTesting
