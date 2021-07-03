@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface NewsRepository {
 
-    suspend fun insertNews(newsCacheEntity: NewsCacheEntity)
+    suspend fun insertNews(news: List<News>)
 
     fun getAllNews(page: Int): Flow<Resource<List<News>>>
 

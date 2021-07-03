@@ -19,12 +19,14 @@ constructor(
     private val cacheMapper: NewsCacheMapper,
     private val callMapper: NewsCallMapper
 ) : NewsRepository {
-    override suspend fun insertNews(newsCacheEntity: NewsCacheEntity) {
-        localDataSource.insertNews(newsCacheEntity)
+    override suspend fun insertNews(news: List<News>) {
+        news.map {
+            localDataSource.insertNews(cacheMapper.mapToEntity(it))
+        }
     }
 
     override fun getAllNews(page: Int): Flow<Resource<List<News>>> = flow {
-        emit(Resource.loading(null))
+        emit(Resource.loading())
         val response = remoteDataSource.getAllNews(page = page)
         if (response.isSuccessful) {
             response.body()?.let { newsResponse ->
@@ -32,6 +34,7 @@ constructor(
                     val news = newsResponse.results.map { callNews ->
                         callMapper.mapFromEntity(callNews)
                     }
+                    insertNews(news)
                     emit(Resource.success(news))
                 } else {
                     getAllNewsDB(page = page)

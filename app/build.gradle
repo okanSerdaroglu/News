@@ -92,6 +92,12 @@ dependencies {
     implementation libraries.viewModel
     implementation libraries.fragment
 
+    testImplementation libraries.jUnit
+    testImplementation libraries.coroutinesTest
+    testImplementation libraries.coreTesting
+    testImplementation libraries.mockito
+    testImplementation libraries.mockitoInline
+
     androidTestImplementation libraries.roomTestImpl
     androidTestImplementation libraries.coreTesting
     androidTestImplementation libraries.coroutines

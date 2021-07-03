@@ -20,7 +20,9 @@ ext {
             gson            : "2.9.0",
             interceptor     : "4.9.0",
             viewModel       : "2.2.0",
-            fragment        : "1.2.5"
+            fragment        : "1.2.5",
+            coroutinesTest  : "1.2.1",
+            mockito         : "3.6.28"
     ]
 
     libraries = [
@@ -49,7 +51,10 @@ ext {
             gson            : "com.squareup.retrofit2:converter-gson:$versions.gson",
             interceptor     : "com.squareup.okhttp3:logging-interceptor:$versions.interceptor",
             viewModel       : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.viewModel",
-            fragment        : "androidx.fragment:fragment-ktx:$versions.fragment"
+            fragment        : "androidx.fragment:fragment-ktx:$versions.fragment",
+            coroutinesTest  : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutinesTest",
+            mockito         : "org.mockito:mockito-core:$versions.mockito",
+            mockitoInline   : "org.mockito:mockito-inline:$versions.mockito"
     ]
 }
 

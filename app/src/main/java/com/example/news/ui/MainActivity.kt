@@ -7,7 +7,11 @@ import com.example.news.R
 import com.example.news.ui.news.NewsViewModel
 import com.example.news.util.ErrorType
 import com.example.news.util.UiStatus
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.InternalCoroutinesApi
 
+@AndroidEntryPoint
+@InternalCoroutinesApi
 class MainActivity : AppCompatActivity() {
 
     private val viewModel: NewsViewModel by viewModels()
@@ -22,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.mainStateView.observe(this, {
             it?.getContentIfNotHandled()?.let { mainViewState ->
                 if (mainViewState.uiStatus is ErrorType) {
-                    when ((mainViewState.uiStatus as UiStatus.Error).errorType) {
+                    when (val errorType = (mainViewState.uiStatus as UiStatus.Error).errorType) {
                         is ErrorType.DIALOG -> {
                             // show dialog
                         }
