@@ -2,8 +2,11 @@ package com.example.news.data.remote
 
 import com.example.news.data.News
 import com.example.news.util.EntityMapper
+import javax.inject.Inject
 
-class NewsCallMapper : EntityMapper<NewsCallEntity, News> {
+class NewsCallMapper
+@Inject
+constructor() : EntityMapper<NewsCallEntity, News> {
     override fun mapFromEntity(entityModel: NewsCallEntity) = News(
         id = entityModel.id,
         description = entityModel.description,

@@ -2,8 +2,11 @@ package com.example.news.data.local
 
 import com.example.news.data.News
 import com.example.news.util.EntityMapper
+import javax.inject.Inject
 
-class NewsCacheMapper : EntityMapper<NewsCacheEntity, News> {
+class NewsCacheMapper
+@Inject
+constructor() : EntityMapper<NewsCacheEntity, News> {
 
     override fun mapToEntity(domainModel: News): NewsCacheEntity = NewsCacheEntity(
         domainModel.id,
@@ -16,6 +19,4 @@ class NewsCacheMapper : EntityMapper<NewsCacheEntity, News> {
         entityModel.description,
         entityModel.category
     )
-
-
 }

@@ -88,6 +88,10 @@ dependencies {
     implementation libraries.gson
     implementation libraries.interceptor
 
+    // viewModel
+    implementation libraries.viewModel
+    implementation libraries.fragment
+
     androidTestImplementation libraries.roomTestImpl
     androidTestImplementation libraries.coreTesting
     androidTestImplementation libraries.coroutines
