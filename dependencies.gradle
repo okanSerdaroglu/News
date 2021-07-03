@@ -12,7 +12,10 @@ ext {
             test            : "1.0.1",
             coreTesting     : "2.1.0",
             coroutines      : "1.2.1",
-            jUnitAndroidTest: "4.13.2"
+            jUnitAndroidTest: "4.13.2",
+            hiltVersion     : "2.30.1-alpha",
+            hiltOtherVersion: "1.0.0-alpha02",
+            hiltTest        : "2.30.1-alpha"
     ]
 
     libraries = [
@@ -30,7 +33,13 @@ ext {
             roomTestImpl    : "androidx.room:room-testing:$versions.room",
             coreTesting     : "androidx.arch.core:core-testing:$versions.coreTesting",
             coroutines      : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutines",
-            jUnitAndroidTest: "junit:junit:$versions.jUnitAndroidTest"
+            jUnitAndroidTest: "junit:junit:$versions.jUnitAndroidTest",
+            hilt            : "com.google.dagger:hilt-android:$versions.hiltVersion",
+            hiltKapt        : "com.google.dagger:hilt-android-compiler:$versions.hiltVersion",
+            hiltViewModel   : "androidx.hilt:hilt-lifecycle-viewmodel:$versions.hiltOtherVersion",
+            hiltOtherKapt   : "androidx.hilt:hilt-compiler:$versions.hiltOtherVersion",
+            hiltTest        : "com.google.dagger:hilt-android-testing:$versions.hiltTest",
+            hiltTestKapt    : "com.google.dagger:hilt-android-compiler:$versions.hiltTest"
     ]
 }
 

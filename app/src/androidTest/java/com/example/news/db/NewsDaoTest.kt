@@ -1,11 +1,11 @@
 package com.example.news.db
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.news.SharedModel
 import com.google.common.truth.Truth.assertThat
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runBlockingTest
@@ -15,26 +15,29 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.IOException
+import javax.inject.Inject
+import javax.inject.Named
 
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
+@HiltAndroidTest
 class NewsDaoTest {
 
-    private lateinit var newsDatabase: NewsDatabase
+    @Inject
+    @Named("news_db")
+    lateinit var newsDatabase: NewsDatabase
+
     private lateinit var newsDao: NewsDao
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    @Before
-    fun createDb() {
-        newsDatabase = Room.inMemoryDatabaseBuilder(
-            ApplicationProvider.getApplicationContext(),
-            NewsDatabase::class.java
-        )
-            .allowMainThreadQueries()
-            .build()
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
 
+    @Before
+    fun setup() {
+        hiltRule.inject()
         newsDao = newsDatabase.newsDao()
     }
 
@@ -58,5 +61,4 @@ class NewsDaoTest {
     fun closeDb() {
         newsDatabase.close()
     }
-
 }

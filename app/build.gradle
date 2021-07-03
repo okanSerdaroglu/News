@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 def localProperties = new Properties()
@@ -20,7 +21,8 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.example.news.HiltTestRunner"
+
     }
 
     flavorDimensions "version"
@@ -75,9 +77,19 @@ dependencies {
     // testImpl
     testImplementation libraries.truth
 
+    // dagger - hilt
+    implementation libraries.hilt
+    kapt libraries.hiltKapt
+    implementation libraries.hiltViewModel
+    kapt libraries.hiltOtherKapt
+
+
     androidTestImplementation libraries.roomTestImpl
     androidTestImplementation libraries.coreTesting
     androidTestImplementation libraries.coroutines
     androidTestImplementation libraries.truth
     androidTestImplementation libraries.jUnitAndroidTest
+
+    androidTestImplementation libraries.hiltTest
+    kaptAndroidTest libraries.hiltTestKapt
 }
