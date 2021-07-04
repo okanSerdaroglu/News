@@ -56,6 +56,21 @@ class NewsDaoTest {
         assertThat(news).hasSize(2)
     }
 
+    @Test
+    fun insertHeadLinesSuccess() = runBlockingTest {
+        newsDao.insertHeadLines(SharedModel.cacheHeadLines)
+        val headLines = newsDao.getAllHeadLines().first()
+        assertThat(headLines).contains(SharedModel.cacheHeadLines)
+    }
+
+    @Test
+    fun getAllHeadLinesSuccess() = runBlockingTest {
+        newsDao.insertHeadLines(SharedModel.cacheHeadLines)
+        newsDao.insertHeadLines(SharedModel.cacheHeadLines_2)
+        val headLines = newsDao.getAllHeadLines().first()
+        assertThat(headLines).hasSize(2)
+    }
+
     @After
     @Throws(IOException::class)
     fun closeDb() {
