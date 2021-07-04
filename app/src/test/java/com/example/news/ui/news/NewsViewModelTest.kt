@@ -40,6 +40,9 @@ class NewsViewModelTest {
 
     private lateinit var newsViewModel: NewsViewModel
 
+    private val category = "general"
+    private val page = 1
+
     @Before
     fun setup() {
         newsViewModel = NewsViewModel(
@@ -101,9 +104,9 @@ class NewsViewModelTest {
             emit(Resource.loading(null))
         }
 
-        `when`(getHeadLinesUseCase.getAllHeadLines()).thenReturn(flow)
+        `when`(getHeadLinesUseCase.getAllHeadLines(category, page)).thenReturn(flow)
 
-        newsViewModel.getAllHeadLines()
+        newsViewModel.getAllHeadLines(category)
 
         val result = newsViewModel.mainStateView.getOrAwaitValueTest()
         assertThat(result.getContentIfNotHandled()?.isLoading).isTrue()
@@ -116,9 +119,9 @@ class NewsViewModelTest {
             emit(Resource.error("Not found", data))
         }
 
-        `when`(getHeadLinesUseCase.getAllHeadLines()).thenReturn(flow)
+        `when`(getHeadLinesUseCase.getAllHeadLines(category, page)).thenReturn(flow)
 
-        newsViewModel.getAllHeadLines()
+        newsViewModel.getAllHeadLines(category)
 
         val result = newsViewModel.mainStateView.getOrAwaitValueTest()
         assertThat(result.getContentIfNotHandled()?.isError).isTrue()
@@ -132,9 +135,9 @@ class NewsViewModelTest {
             emit(Resource.success(data))
         }
 
-        `when`(getHeadLinesUseCase.getAllHeadLines()).thenReturn(flow)
+        `when`(getHeadLinesUseCase.getAllHeadLines(category, page)).thenReturn(flow)
 
-        newsViewModel.getAllHeadLines()
+        newsViewModel.getAllHeadLines(category)
 
         val result = newsViewModel.headLinesList.getOrAwaitValueTest()
         assertThat(result).isEqualTo(data)

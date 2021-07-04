@@ -151,7 +151,7 @@ class HeadLinesRepositoryImplTest {
         Mockito.`when`(cacheMapper.mapFromEntity(SharedModel.cacheHeadLines_2))
             .thenReturn(SharedModel.headLines_2)
 
-        val result = headLinesRepository.getAllHeadLines(category, page).first()
+        val result = headLinesRepository.getAllHeadLinesDB(category, page).first()
 
         Truth.assertThat(result.data)
             .isEqualTo(listOf(SharedModel.headLines, SharedModel.headLines_2))
@@ -165,7 +165,7 @@ class HeadLinesRepositoryImplTest {
 
         Mockito.`when`(localDataSource.getAllHeadLines(category, page)).thenReturn(flow)
 
-        val result = headLinesRepository.getAllHeadLines(category, page).first()
+        val result = headLinesRepository.getAllHeadLinesDB(category, page).first()
         val expected = Resource.error(Constants.HEADLINES_NOT_FOUND, null)
         Truth.assertThat(result).isEqualTo(expected)
     }

@@ -7,10 +7,10 @@ import androidx.room.PrimaryKey
 data class HeadLinesCacheEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int?,
-    val title: String,
-    val description: String,
-    val url: String,
-    val urlToImage: String,
+    val title: String?,
+    val description: String?,
+    val url: String?,
+    val urlToImage: String?,
     val isInReadList: Boolean = false
 ) {
     override fun equals(other: Any?): Boolean {

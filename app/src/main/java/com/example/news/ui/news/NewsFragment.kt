@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.news.R
 import com.example.news.data.News
 import com.example.news.databinding.FragmentNewsBinding
@@ -53,7 +54,8 @@ constructor(
     }
 
     override fun onItemClick(item: News) {
-       viewModel?.setCategory(item.category)
+        viewModel?.setCategory(item.category)
+        findNavController().navigate(R.id.action_newsFragment_to_headLinesFragment)
     }
 
 }

@@ -36,15 +36,19 @@ constructor(
                 )
             )
         }
-
         subscribeObserver()
-
     }
 
+
     private fun subscribeObserver() {
-        viewModel?.headLinesList?.observe(viewLifecycleOwner, { headLines ->
-            headLinesAdapter.submitList(headLines)
-        })
+        viewModel?.apply {
+            headLinesList.observe(viewLifecycleOwner, { headLines ->
+                headLinesAdapter.submitList(headLines)
+            })
+            category.observe(viewLifecycleOwner, {
+                viewModel?.getAllHeadLines(it)
+            })
+        }
     }
 
     override fun onDestroyView() {
@@ -53,6 +57,6 @@ constructor(
     }
 
     override fun onItemClick(item: HeadLines) {
-        
+
     }
 }
