@@ -6,6 +6,8 @@ import com.example.news.SharedModel
 import com.example.news.data.local.news.NewsCacheMapper
 import com.example.news.data.remote.news.NewsCallMapper
 import com.example.news.data.remote.news.NewsSourcesResponse
+import com.example.news.repository.news.NewsRepository
+import com.example.news.repository.news.NewsRepositoryImpl
 import com.example.news.util.Constants
 import com.example.news.util.Resource
 import com.google.common.truth.Truth.assertThat

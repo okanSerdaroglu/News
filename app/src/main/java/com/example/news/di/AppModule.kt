@@ -8,8 +8,8 @@ import com.example.news.data.remote.NewsAPI
 import com.example.news.data.remote.news.NewsCallMapper
 import com.example.news.db.NewsDatabase
 import com.example.news.repository.LocalDataSource
-import com.example.news.repository.NewsRepository
-import com.example.news.repository.NewsRepositoryImpl
+import com.example.news.repository.news.NewsRepository
+import com.example.news.repository.news.NewsRepositoryImpl
 import com.example.news.repository.RemoteDataSource
 import com.example.news.util.Constants.DATABASE_NAME
 import com.example.news.util.NoConnectionInterceptor

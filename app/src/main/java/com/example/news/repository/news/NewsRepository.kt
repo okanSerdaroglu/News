@@ -1,4 +1,4 @@
-package com.example.news.repository
+package com.example.news.repository.news
 
 import com.example.news.data.News
 import com.example.news.util.Resource

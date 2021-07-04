@@ -1,8 +1,10 @@
-package com.example.news.repository
+package com.example.news.repository.news
 
 import com.example.news.data.News
 import com.example.news.data.local.news.NewsCacheMapper
 import com.example.news.data.remote.news.NewsCallMapper
+import com.example.news.repository.LocalDataSource
+import com.example.news.repository.RemoteDataSource
 import com.example.news.util.Constants
 import com.example.news.util.Resource
 import kotlinx.coroutines.flow.Flow
