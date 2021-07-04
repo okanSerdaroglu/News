@@ -1,6 +1,7 @@
-package com.example.news.data.local
+package com.example.news.data.local.news
 
 import com.example.news.SharedModel
+import com.example.news.data.local.news.NewsCacheMapper
 import com.google.common.truth.Truth.assertThat
 
 import org.junit.Test

@@ -1,4 +1,4 @@
-package com.example.news.data.local
+package com.example.news.data.local.news
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -11,8 +11,8 @@ data class NewsCacheEntity(
     val category: String
 ) {
     override fun equals(other: Any?): Boolean {
-        return id == (other as NewsCacheEntity).id
+        return category == (other as NewsCacheEntity).category
                 && description == other.description
-                && category == other.category
+
     }
 }

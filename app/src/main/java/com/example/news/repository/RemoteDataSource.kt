@@ -1,7 +1,7 @@
 package com.example.news.repository
 
 import com.example.news.data.remote.NewsAPI
-import com.example.news.data.remote.NewsSourcesResponse
+import com.example.news.data.remote.news.NewsSourcesResponse
 import retrofit2.Response
 import javax.inject.Inject
 

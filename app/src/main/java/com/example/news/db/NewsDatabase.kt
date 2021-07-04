@@ -2,7 +2,7 @@ package com.example.news.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.news.data.local.NewsCacheEntity
+import com.example.news.data.local.news.NewsCacheEntity
 
 @Database(
     entities = [NewsCacheEntity::class],

@@ -3,9 +3,9 @@ package com.example.news.repository
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.MainCoroutineRule
 import com.example.news.SharedModel
-import com.example.news.data.local.NewsCacheMapper
-import com.example.news.data.remote.NewsCallMapper
-import com.example.news.data.remote.NewsSourcesResponse
+import com.example.news.data.local.news.NewsCacheMapper
+import com.example.news.data.remote.news.NewsCallMapper
+import com.example.news.data.remote.news.NewsSourcesResponse
 import com.example.news.util.Constants
 import com.example.news.util.Resource
 import com.google.common.truth.Truth.assertThat

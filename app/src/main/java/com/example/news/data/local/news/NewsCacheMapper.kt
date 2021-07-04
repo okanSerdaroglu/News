@@ -1,4 +1,4 @@
-package com.example.news.data.local
+package com.example.news.data.local.news
 
 import com.example.news.data.News
 import com.example.news.util.EntityMapper

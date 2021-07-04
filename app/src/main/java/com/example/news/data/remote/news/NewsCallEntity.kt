@@ -1,4 +1,4 @@
-package com.example.news.data.remote
+package com.example.news.data.remote.news
 
 class NewsCallEntity(
     val id: String,

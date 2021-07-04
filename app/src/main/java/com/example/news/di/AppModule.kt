@@ -3,9 +3,9 @@ package com.example.news.di
 import android.content.Context
 import androidx.room.Room
 import com.example.news.BuildConfig
-import com.example.news.data.local.NewsCacheMapper
+import com.example.news.data.local.news.NewsCacheMapper
 import com.example.news.data.remote.NewsAPI
-import com.example.news.data.remote.NewsCallMapper
+import com.example.news.data.remote.news.NewsCallMapper
 import com.example.news.db.NewsDatabase
 import com.example.news.repository.LocalDataSource
 import com.example.news.repository.NewsRepository

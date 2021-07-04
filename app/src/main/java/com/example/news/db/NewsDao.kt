@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.news.data.local.NewsCacheEntity
+import com.example.news.data.local.news.NewsCacheEntity
 import kotlinx.coroutines.flow.Flow
 
 

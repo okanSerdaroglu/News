@@ -1,6 +1,7 @@
 package com.example.news.data.remote
 
 import com.example.news.SharedModel
+import com.example.news.data.remote.news.NewsCallMapper
 import com.google.common.truth.Truth.*
 import org.junit.Test
 

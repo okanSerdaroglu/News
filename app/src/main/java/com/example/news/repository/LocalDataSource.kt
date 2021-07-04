@@ -1,6 +1,6 @@
 package com.example.news.repository
 
-import com.example.news.data.local.NewsCacheEntity
+import com.example.news.data.local.news.NewsCacheEntity
 import com.example.news.db.NewsDao
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
