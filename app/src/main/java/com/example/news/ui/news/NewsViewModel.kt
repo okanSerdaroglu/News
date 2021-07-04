@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.news.data.News
+import com.example.news.ui.news.usecases.news.GetNewsUseCase
 import com.example.news.util.Status
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
