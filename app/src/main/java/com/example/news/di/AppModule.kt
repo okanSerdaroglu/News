@@ -3,14 +3,18 @@ package com.example.news.di
 import android.content.Context
 import androidx.room.Room
 import com.example.news.BuildConfig
+import com.example.news.data.local.headlines.HeadLinesCacheMapper
 import com.example.news.data.local.news.NewsCacheMapper
 import com.example.news.data.remote.NewsAPI
+import com.example.news.data.remote.headlines.HeadLinesCallMapper
 import com.example.news.data.remote.news.NewsCallMapper
 import com.example.news.db.NewsDatabase
 import com.example.news.repository.LocalDataSource
 import com.example.news.repository.news.NewsRepository
 import com.example.news.repository.news.NewsRepositoryImpl
 import com.example.news.repository.RemoteDataSource
+import com.example.news.repository.headlines.HeadLinesRepository
+import com.example.news.repository.headlines.HeadLinesRepositoryImpl
 import com.example.news.util.Constants.DATABASE_NAME
 import com.example.news.util.NoConnectionInterceptor
 import dagger.Module
@@ -114,6 +118,17 @@ object AppModule {
         cacheMapper: NewsCacheMapper,
         callMapper: NewsCallMapper
     ): NewsRepository = NewsRepositoryImpl(
+        localDataSource, remoteDataSource, cacheMapper, callMapper
+    )
+
+    @Singleton
+    @Provides
+    fun provideHeadLinesRepository(
+        localDataSource: LocalDataSource,
+        remoteDataSource: RemoteDataSource,
+        cacheMapper: HeadLinesCacheMapper,
+        callMapper: HeadLinesCallMapper
+    ): HeadLinesRepository = HeadLinesRepositoryImpl(
         localDataSource, remoteDataSource, cacheMapper, callMapper
     )
 

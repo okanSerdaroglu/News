@@ -79,29 +79,29 @@ class NewsRepositoryImplTest {
     fun `getAllNews success`() = runBlockingTest {
 
         val response = NewsSourcesResponse(listOf(SharedModel.callNews, SharedModel.callNews_2))
-        `when`(remoteDataSource.getAllNews(1)).thenReturn(Response.success(response))
+        `when`(remoteDataSource.getAllNews()).thenReturn(Response.success(response))
         `when`(callMapper.mapFromEntity(SharedModel.callNews)).thenReturn(SharedModel.news)
         `when`(callMapper.mapFromEntity(SharedModel.callNews_2)).thenReturn(SharedModel.news_2)
 
-        val result = newsRepository.getAllNews(1).drop(1).first()
+        val result = newsRepository.getAllNews().drop(1).first()
         assertThat(result.data).isEqualTo(listOf(SharedModel.news, SharedModel.news_2))
     }
 
     @Test
     fun `getAllNews method gets news successfully with an empty body`() = runBlockingTest {
 
-        `when`(remoteDataSource.getAllNews(1))
+        `when`(remoteDataSource.getAllNews())
             .thenReturn(Response.success<NewsSourcesResponse>(200, null))
 
         val flow = flow {
             emit(listOf(SharedModel.cacheNews, SharedModel.cacheNews_2))
         }
 
-        `when`(localDataSource.getAllNews(1)).thenReturn(flow)
+        `when`(localDataSource.getAllNews()).thenReturn(flow)
         `when`(cacheMapper.mapFromEntity(SharedModel.cacheNews)).thenReturn(SharedModel.news)
         `when`(cacheMapper.mapFromEntity(SharedModel.cacheNews_2)).thenReturn(SharedModel.news_2)
 
-        val result = newsRepository.getAllNews(1).drop(1).first()
+        val result = newsRepository.getAllNews().drop(1).first()
         assertThat(result.data).isEqualTo(listOf(SharedModel.news, SharedModel.news_2))
 
     }
@@ -109,18 +109,18 @@ class NewsRepositoryImplTest {
     @Test
     fun `getting all news with an error`() = runBlockingTest {
 
-        `when`(remoteDataSource.getAllNews(1))
+        `when`(remoteDataSource.getAllNews())
             .thenReturn(Response.error(400, "".toResponseBody()))
 
         val flow = flow {
             emit(listOf(SharedModel.cacheNews, SharedModel.cacheNews_2))
         }
 
-        `when`(localDataSource.getAllNews(1)).thenReturn(flow)
+        `when`(localDataSource.getAllNews()).thenReturn(flow)
         `when`(cacheMapper.mapFromEntity(SharedModel.cacheNews)).thenReturn(SharedModel.news)
         `when`(cacheMapper.mapFromEntity(SharedModel.cacheNews_2)).thenReturn(SharedModel.news_2)
 
-        val result = newsRepository.getAllNews(1).drop(1).first()
+        val result = newsRepository.getAllNews().drop(1).first()
         assertThat(result.data).isEqualTo(listOf(SharedModel.news, SharedModel.news_2))
     }
 
@@ -131,11 +131,11 @@ class NewsRepositoryImplTest {
             emit(listOf(SharedModel.cacheNews, SharedModel.cacheNews_2))
         }
 
-        `when`(localDataSource.getAllNews(1)).thenReturn(flow)
+        `when`(localDataSource.getAllNews()).thenReturn(flow)
         `when`(cacheMapper.mapFromEntity(SharedModel.cacheNews)).thenReturn(SharedModel.news)
         `when`(cacheMapper.mapFromEntity(SharedModel.cacheNews_2)).thenReturn(SharedModel.news_2)
 
-        val result = newsRepository.getAllNewsDB(1).first()
+        val result = newsRepository.getAllNewsDB().first()
 
         assertThat(result.data).isEqualTo(listOf(SharedModel.news, SharedModel.news_2))
     }
@@ -146,9 +146,9 @@ class NewsRepositoryImplTest {
             emit(null)
         }
 
-        `when`(localDataSource.getAllNews(1)).thenReturn(flow)
+        `when`(localDataSource.getAllNews()).thenReturn(flow)
 
-        val result = newsRepository.getAllNewsDB(1).first()
+        val result = newsRepository.getAllNewsDB().first()
         val expected = Resource.error(Constants.NEWS_NOT_FOUND, null)
         assertThat(result).isEqualTo(expected)
     }
