@@ -1,4 +1,4 @@
-package com.example.news.ui.news
+package com.example.news.ui
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
@@ -6,8 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.news.data.HeadLines
 import com.example.news.data.News
-import com.example.news.ui.news.usecases.headlines.GetHeadLinesUseCase
-import com.example.news.ui.news.usecases.news.GetNewsUseCase
+import com.example.news.ui.headlines.GetHeadLinesUseCase
+import com.example.news.ui.news.BaseViewModel
+import com.example.news.ui.news.GetNewsUseCase
 import com.example.news.util.Status
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -25,6 +26,11 @@ constructor(
     private val _headLinesList = MutableLiveData<List<HeadLines>>()
     val headLinesList: LiveData<List<HeadLines>> = _headLinesList
 
+    private val _category = MutableLiveData<String>()
+    val category: LiveData<String> = _category
+
+    private var page = 1
+
     fun getAllNews() {
         viewModelScope.launch {
             getNewsUseCase.getAllNews().collect { resourceListNews ->
@@ -40,9 +46,9 @@ constructor(
         }
     }
 
-    fun getAllHeadLines() {
+    fun getAllHeadLines(category: String) {
         viewModelScope.launch {
-            getHeadLinesUseCase.getAllHeadLines().collect { resourceHeadLines ->
+            getHeadLinesUseCase.getAllHeadLines(category, page).collect { resourceHeadLines ->
                 when (resourceHeadLines.status) {
                     is Status.SUCCESS -> {
                         _headLinesList.value = resourceHeadLines.data
@@ -53,6 +59,10 @@ constructor(
                 }
             }
         }
+    }
+
+    fun setCategory (category: String){
+        _category.value = category
     }
 
 }

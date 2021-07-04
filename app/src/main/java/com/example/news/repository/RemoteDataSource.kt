@@ -14,9 +14,10 @@ constructor(
 ) {
     suspend fun getAllNews(): Response<NewsSourcesResponse> = newsAPI.getNewsHeaders()
 
-    suspend fun getAllHeadLines()
+    suspend fun getAllHeadLines(category: String, page: Int)
             : Response<HeadLinesResponse> = newsAPI.getAllHeadLines(
-        1,
-        Constants.PAGE_SIZE
+        category = category,
+        page = page,
+        pageSize = Constants.PAGE_SIZE
     )
 }

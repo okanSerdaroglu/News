@@ -16,8 +16,10 @@ constructor(
 
     fun getAllNews(): Flow<List<NewsCacheEntity>?> = newsDao.getAllNews()
 
-    suspend fun insertHeadLines(headLinesCacheEntity: HeadLinesCacheEntity) = newsDao.insertHeadLines(headLinesCacheEntity)
+    suspend fun insertHeadLines(headLinesCacheEntity: HeadLinesCacheEntity) =
+        newsDao.insertHeadLines(headLinesCacheEntity)
 
-    fun getAllHeadLines(): Flow<List<HeadLinesCacheEntity>?> = newsDao.getAllHeadLines()
+    fun getAllHeadLines(category: String, page: Int): Flow<List<HeadLinesCacheEntity>?> =
+        newsDao.getAllHeadLines()
 
 }

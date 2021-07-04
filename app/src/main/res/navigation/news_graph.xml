@@ -5,6 +5,14 @@
 
     <fragment
         android:id="@+id/newsFragment"
-        android:name="com.example.news.ui.NewsFragment"
-        android:label="NewsFragment" />
+        android:name="com.example.news.ui.news.NewsFragment"
+        android:label="NewsFragment" >
+        <action
+            android:id="@+id/action_newsFragment_to_headLinesFragment"
+            app:destination="@id/headLinesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/headLinesFragment"
+        android:name="com.example.news.ui.headlines.HeadLinesFragment"
+        android:label="HeadLinesFragment" />
 </navigation>

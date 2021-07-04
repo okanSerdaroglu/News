@@ -26,32 +26,36 @@ constructor(
         }
     }
 
-    override fun getAllHeadLines(): Flow<Resource<List<HeadLines>?>> = flow {
-        emit(Resource.loading())
-        val response = remoteDataSource.getAllHeadLines()
-        if (response.isSuccessful) {
-            response.body()?.let { headLinesResponse ->
-                headLinesResponse.articles?.let { results ->
-                    val headLines = results.map {
-                        callMapper.mapFromEntity(it)
+    override fun getAllHeadLines(category: String, page: Int): Flow<Resource<List<HeadLines>?>> =
+        flow {
+            emit(Resource.loading())
+            val response = remoteDataSource.getAllHeadLines(category, page)
+            if (response.isSuccessful) {
+                response.body()?.let { headLinesResponse ->
+                    headLinesResponse.articles?.let { results ->
+                        val headLines = results.map {
+                            callMapper.mapFromEntity(it)
+                        }
+                        insertHeadLines(headLines)
+                        emit(Resource.success(headLines))
+                    } ?: getAllHeadLinesDB(category, page).collect {
+                        emit(it)
                     }
-                    insertHeadLines(headLines)
-                    emit(Resource.success(headLines))
-                } ?: getAllHeadLinesDB().collect {
+                } ?: getAllHeadLinesDB(category, page).collect {
                     emit(it)
                 }
-            } ?: getAllHeadLinesDB().collect {
-                emit(it)
-            }
-        } else {
-            getAllHeadLinesDB().collect {
-                emit(it)
+            } else {
+                getAllHeadLinesDB(category, page).collect {
+                    emit(it)
+                }
             }
         }
-    }
 
-    override fun getAllHeadLinesDB(): Flow<Resource<List<HeadLines>?>> = flow {
-        localDataSource.getAllHeadLines().collect { cacheHeadLines ->
+    override fun getAllHeadLinesDB(
+        category: String,
+        page: Int
+    ): Flow<Resource<List<HeadLines>?>> = flow {
+        localDataSource.getAllHeadLines(category, page).collect { cacheHeadLines ->
             if (!cacheHeadLines.isNullOrEmpty()) {
                 val headLines = cacheHeadLines.map {
                     cacheMapper.mapFromEntity(it)

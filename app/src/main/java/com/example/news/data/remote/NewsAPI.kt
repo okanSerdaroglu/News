@@ -13,8 +13,9 @@ interface NewsAPI {
 
     @GET("v2/top-headlines")
     suspend fun getAllHeadLines(
+        @Query("category") category: String,
         @Query("page") page: Int,
         @Query("pageSize") pageSize: Int
-    ) : Response<HeadLinesResponse>
+    ): Response<HeadLinesResponse>
 
 }

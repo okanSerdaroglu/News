@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/unit8">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageView_headLine"
+        android:layout_width="@dimen/unit100"
+        android:layout_height="@dimen/unit70"
+        android:layout_margin="@dimen/unit8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/textView_addToList"
+        android:layout_width="@dimen/match_constraint_size"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/unit8"
+        android:gravity="center"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/imageView_headLine"
+        app:layout_constraintStart_toStartOf="@+id/imageView_headLine"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_headLine"
+        tools:text="Add To List" />
+
+    <TextView
+        android:id="@+id/textView_title"
+        android:layout_width="@dimen/match_constraint_size"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/unit8"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageView_headLine"
+        app:layout_constraintTop_toTopOf="@+id/imageView_headLine"
+        tools:text="Tropical Storm Elsa weakens and slows, but a tropical storm watch is in effect for South Florida - CNN " />
+
+    <TextView
+        android:id="@+id/textView_description"
+        android:layout_width="@dimen/match_constraint_size"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/unit8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView_title"
+        app:layout_constraintTop_toBottomOf="@+id/textView_title"
+        tools:text="Tropical Storm Elsa is a little weaker and slower Sunday as it swirls away from Haiti toward Jamaica and Cuba, according to the National Hurricane Center, but a tropical storm watch is in effect for the Florida Keys." />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

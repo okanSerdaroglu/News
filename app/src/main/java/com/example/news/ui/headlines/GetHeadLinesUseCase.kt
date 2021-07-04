@@ -1,4 +1,4 @@
-package com.example.news.ui.news.usecases.headlines
+package com.example.news.ui.headlines
 
 import com.example.news.repository.headlines.HeadLinesRepository
 import javax.inject.Inject
@@ -8,5 +8,5 @@ class GetHeadLinesUseCase
 constructor(
     private val headLinesRepository: HeadLinesRepository
 ) {
-    fun getAllHeadLines() = headLinesRepository.getAllHeadLines()
+    fun getAllHeadLines(category:String, page:Int) = headLinesRepository.getAllHeadLines(category, page)
 }

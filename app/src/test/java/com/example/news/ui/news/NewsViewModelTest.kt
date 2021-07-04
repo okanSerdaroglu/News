@@ -6,8 +6,8 @@ import com.example.getOrAwaitValueTest
 import com.example.news.SharedModel
 import com.example.news.data.HeadLines
 import com.example.news.data.News
-import com.example.news.ui.news.usecases.headlines.GetHeadLinesUseCase
-import com.example.news.ui.news.usecases.news.GetNewsUseCase
+import com.example.news.ui.NewsViewModel
+import com.example.news.ui.headlines.GetHeadLinesUseCase
 import com.example.news.util.Resource
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi

@@ -1,4 +1,4 @@
-package com.example.news.ui.news.usecases.news
+package com.example.news.ui.news
 
 import com.example.news.repository.news.NewsRepository
 import javax.inject.Inject

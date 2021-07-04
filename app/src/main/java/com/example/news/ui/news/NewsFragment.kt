@@ -1,14 +1,14 @@
-package com.example.news.ui
+package com.example.news.ui.news
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.news.R
 import com.example.news.data.News
 import com.example.news.databinding.FragmentNewsBinding
-import com.example.news.ui.news.NewsViewModel
+import com.example.news.ui.NewsViewModel
+import com.example.news.util.OnItemClickListener
 import com.example.news.util.SpaceItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,7 +17,7 @@ class NewsFragment
 constructor(
     val sourceAdapter: SourcesAdapter,
     var viewModel: NewsViewModel? = null
-) : Fragment(R.layout.fragment_news),OnItemClickListener<News> {
+) : Fragment(R.layout.fragment_news), OnItemClickListener<News> {
 
     private var binding: FragmentNewsBinding? = null
 
@@ -53,7 +53,7 @@ constructor(
     }
 
     override fun onItemClick(item: News) {
-
+       viewModel?.setCategory(item.category)
     }
 
 }

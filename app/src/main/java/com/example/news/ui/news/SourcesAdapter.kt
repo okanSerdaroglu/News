@@ -1,4 +1,4 @@
-package com.example.news.ui
+package com.example.news.ui.news
 
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.RecyclerView
@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.news.data.News
 import com.example.news.databinding.ItemSourceBinding
+import com.example.news.util.OnItemClickListener
 import javax.inject.Inject
 
 class SourcesAdapter

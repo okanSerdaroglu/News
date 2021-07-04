@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.example.news.R
-import com.example.news.ui.news.NewsViewModel
 import com.example.news.util.ErrorType
 import com.example.news.util.UiStatus
 import dagger.hilt.android.AndroidEntryPoint
