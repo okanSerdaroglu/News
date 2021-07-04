@@ -9,6 +9,7 @@ import com.example.news.data.News
 import com.example.news.ui.headlines.GetHeadLinesUseCase
 import com.example.news.ui.news.BaseViewModel
 import com.example.news.ui.news.GetNewsUseCase
+import com.example.news.util.Constants
 import com.example.news.util.Status
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -30,6 +31,7 @@ constructor(
     val category: LiveData<String> = _category
 
     private var page = 1
+    private var totalCount = 0
 
     fun getAllNews() {
         viewModelScope.launch {
@@ -61,8 +63,18 @@ constructor(
         }
     }
 
-    fun setCategory (category: String){
+    fun setCategory(category: String) {
         _category.value = category
     }
 
+    fun hasMoreItem(): Boolean {
+        return (totalCount > page * Constants.PAGE_SIZE)
+    }
+
+    fun loadMoreItems() {
+        page++
+        _category.value?.let {
+            getAllHeadLines(it)
+        }
+    }
 }
