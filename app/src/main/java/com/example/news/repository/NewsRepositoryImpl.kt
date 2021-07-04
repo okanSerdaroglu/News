@@ -24,9 +24,9 @@ constructor(
         }
     }
 
-    override fun getAllNews(page: Int): Flow<Resource<List<News>?>> = flow {
+    override fun getAllNews(): Flow<Resource<List<News>?>> = flow {
         emit(Resource.loading())
-        val response = remoteDataSource.getAllNews(page = page)
+        val response = remoteDataSource.getAllNews()
         if (response.isSuccessful) {
             response.body()?.let { newsResponse ->
                 newsResponse.sources?.let { results ->
@@ -35,21 +35,21 @@ constructor(
                     }
                     insertNews(news)
                     emit(Resource.success(news))
-                } ?: getAllNewsDB(page = page).collect {
+                } ?: getAllNewsDB().collect {
                     emit(it)
                 }
-            } ?: getAllNewsDB(page = page).collect {
+            } ?: getAllNewsDB().collect {
                 emit(it)
             }
         } else {
-            getAllNewsDB(page = page).collect {
+            getAllNewsDB().collect {
                 emit(it)
             }
         }
     }
 
-    override fun getAllNewsDB(page: Int) = flow {
-        localDataSource.getAllNews(page).collect { cacheNews ->
+    override fun getAllNewsDB() = flow {
+        localDataSource.getAllNews().collect { cacheNews ->
             if (!cacheNews.isNullOrEmpty()) {
                 val news = cacheNews.map {
                     cacheMapper.mapFromEntity(it)

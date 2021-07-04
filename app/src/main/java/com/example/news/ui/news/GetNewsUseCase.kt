@@ -8,5 +8,5 @@ class GetNewsUseCase
 constructor(
     private val newsRepository: NewsRepository
 ) {
-    fun getAllNews(pageNumber: Int) = newsRepository.getAllNews(pageNumber)
+    fun getAllNews() = newsRepository.getAllNews()
 }

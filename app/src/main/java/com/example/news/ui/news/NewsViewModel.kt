@@ -18,9 +18,9 @@ constructor(
     private val _newsList = MutableLiveData<List<News>>()
     val newsList: LiveData<List<News>> = _newsList
 
-    fun getAllNews(page: Int) {
+    fun getAllNews() {
         viewModelScope.launch {
-            getNewsUseCase.getAllNews(page).collect { resourceListNews ->
+            getNewsUseCase.getAllNews().collect { resourceListNews ->
                 when (resourceListNews.status) {
                     is Status.SUCCESS -> {
                         _newsList.value = resourceListNews.data

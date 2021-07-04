@@ -38,7 +38,7 @@ constructor(
         }
 
         subscribeObserver()
-        viewModel?.getAllNews(1)
+        viewModel?.getAllNews()
     }
 
     private fun subscribeObserver() {
@@ -53,7 +53,7 @@ constructor(
     }
 
     override fun onItemClick(item: News) {
-        TODO("Not yet implemented")
+
     }
 
 }

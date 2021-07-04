@@ -13,6 +13,6 @@ constructor(
 
     suspend fun insertNews(newsCacheEntity: NewsCacheEntity) = newsDao.insertNews(newsCacheEntity)
 
-    fun getAllNews(page: Int): Flow<List<NewsCacheEntity>?> = newsDao.getAllNews()
+    fun getAllNews(): Flow<List<NewsCacheEntity>?> = newsDao.getAllNews()
 
 }

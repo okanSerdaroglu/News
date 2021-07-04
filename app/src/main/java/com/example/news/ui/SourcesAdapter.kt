@@ -38,7 +38,7 @@ constructor(
             item?.let { news ->
                 binding.textViewName.text = news.category
                 binding.textViewDescription.text = news.description
-                binding.root.setOnClickListener {
+                binding.constraintLayoutItem.setOnClickListener {
                     listener?.onItemClick(news)
                 }
             }

@@ -10,5 +10,5 @@ class RemoteDataSource
 constructor(
     private val newsAPI: NewsAPI
 ) {
-    suspend fun getAllNews(page: Int): Response<NewsSourcesResponse> = newsAPI.getNewsHeaders()
+    suspend fun getAllNews(): Response<NewsSourcesResponse> = newsAPI.getNewsHeaders()
 }

@@ -8,8 +8,8 @@ interface NewsRepository {
 
     suspend fun insertNews(news: List<News>)
 
-    fun getAllNews(page: Int): Flow<Resource<List<News>?>>
+    fun getAllNews(): Flow<Resource<List<News>?>>
 
-    fun getAllNewsDB(page: Int): Flow<Resource<List<News>?>>
+    fun getAllNewsDB(): Flow<Resource<List<News>?>>
 
 }

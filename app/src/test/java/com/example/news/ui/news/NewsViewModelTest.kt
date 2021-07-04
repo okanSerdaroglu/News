@@ -45,9 +45,9 @@ class NewsViewModelTest {
             emit(Resource.loading(null))
         }
 
-        `when`(getNewsUseCase.getAllNews(1)).thenReturn(flow)
+        `when`(getNewsUseCase.getAllNews()).thenReturn(flow)
 
-        newsViewModel.getAllNews(1)
+        newsViewModel.getAllNews()
 
         val result = newsViewModel.mainStateView.getOrAwaitValueTest()
         assertThat(result.getContentIfNotHandled()?.isLoading).isTrue()
@@ -60,9 +60,9 @@ class NewsViewModelTest {
             emit(Resource.error("Not found", data))
         }
 
-        `when`(getNewsUseCase.getAllNews(1)).thenReturn(flow)
+        `when`(getNewsUseCase.getAllNews()).thenReturn(flow)
 
-        newsViewModel.getAllNews(1)
+        newsViewModel.getAllNews()
 
         val result = newsViewModel.mainStateView.getOrAwaitValueTest()
         assertThat(result.getContentIfNotHandled()?.isError).isTrue()
@@ -76,9 +76,9 @@ class NewsViewModelTest {
             emit(Resource.success(data))
         }
 
-        `when`(getNewsUseCase.getAllNews(1)).thenReturn(flow)
+        `when`(getNewsUseCase.getAllNews()).thenReturn(flow)
 
-        newsViewModel.getAllNews(1)
+        newsViewModel.getAllNews()
 
         val result = newsViewModel.newsList.getOrAwaitValueTest()
         assertThat(result).isEqualTo(data)
@@ -90,9 +90,9 @@ class NewsViewModelTest {
             emit(Resource.loading(null))
         }
 
-        `when`(getNewsUseCase.getAllNews(1)).thenReturn(flow)
+        `when`(getNewsUseCase.getAllNews()).thenReturn(flow)
 
-        newsViewModel.getAllNews(1)
+        newsViewModel.getAllNews()
 
         val result = newsViewModel.mainStateView.getOrAwaitValueTest()
         assertThat(result.getContentIfNotHandled()?.isLoading).isTrue()
