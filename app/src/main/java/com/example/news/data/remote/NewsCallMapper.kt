@@ -7,6 +7,7 @@ import javax.inject.Inject
 class NewsCallMapper
 @Inject
 constructor() : EntityMapper<NewsCallEntity, News> {
+
     override fun mapFromEntity(entityModel: NewsCallEntity) = News(
         id = entityModel.id,
         description = entityModel.description,

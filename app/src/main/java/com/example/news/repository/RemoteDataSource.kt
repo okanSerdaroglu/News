@@ -1,7 +1,7 @@
 package com.example.news.repository
 
 import com.example.news.data.remote.NewsAPI
-import com.example.news.data.remote.NewsHeadersResponse
+import com.example.news.data.remote.NewsSourcesResponse
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -10,5 +10,5 @@ class RemoteDataSource
 constructor(
     private val newsAPI: NewsAPI
 ) {
-    suspend fun getAllNews(page: Int): Response<NewsHeadersResponse> = newsAPI.getNewsHeaders()
+    suspend fun getAllNews(page: Int): Response<NewsSourcesResponse> = newsAPI.getNewsHeaders()
 }

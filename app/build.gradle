@@ -25,6 +25,10 @@ android {
 
     }
 
+    viewBinding {
+        enabled true
+    }
+
     flavorDimensions "version"
     productFlavors {
         prod {

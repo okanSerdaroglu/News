@@ -29,7 +29,7 @@ constructor(
         val response = remoteDataSource.getAllNews(page = page)
         if (response.isSuccessful) {
             response.body()?.let { newsResponse ->
-                newsResponse.results?.let { results ->
+                newsResponse.sources?.let { results ->
                     val news = results.map {
                         callMapper.mapFromEntity(it)
                     }

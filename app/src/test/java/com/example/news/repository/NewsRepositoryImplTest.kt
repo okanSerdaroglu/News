@@ -5,7 +5,7 @@ import com.example.MainCoroutineRule
 import com.example.news.SharedModel
 import com.example.news.data.local.NewsCacheMapper
 import com.example.news.data.remote.NewsCallMapper
-import com.example.news.data.remote.NewsHeadersResponse
+import com.example.news.data.remote.NewsSourcesResponse
 import com.example.news.util.Constants
 import com.example.news.util.Resource
 import com.google.common.truth.Truth.assertThat
@@ -76,7 +76,7 @@ class NewsRepositoryImplTest {
     @Test
     fun `getAllNews success`() = runBlockingTest {
 
-        val response = NewsHeadersResponse(listOf(SharedModel.callNews, SharedModel.callNews_2))
+        val response = NewsSourcesResponse(listOf(SharedModel.callNews, SharedModel.callNews_2))
         `when`(remoteDataSource.getAllNews(1)).thenReturn(Response.success(response))
         `when`(callMapper.mapFromEntity(SharedModel.callNews)).thenReturn(SharedModel.news)
         `when`(callMapper.mapFromEntity(SharedModel.callNews_2)).thenReturn(SharedModel.news_2)
@@ -89,7 +89,7 @@ class NewsRepositoryImplTest {
     fun `getAllNews method gets news successfully with an empty body`() = runBlockingTest {
 
         `when`(remoteDataSource.getAllNews(1))
-            .thenReturn(Response.success<NewsHeadersResponse>(200, null))
+            .thenReturn(Response.success<NewsSourcesResponse>(200, null))
 
         val flow = flow {
             emit(listOf(SharedModel.cacheNews, SharedModel.cacheNews_2))
