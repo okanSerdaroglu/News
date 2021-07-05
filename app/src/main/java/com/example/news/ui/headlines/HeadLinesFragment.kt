@@ -32,7 +32,14 @@ constructor(
 
         binding = FragmentHeadLinesBinding.bind(view)
         headLinesAdapter.setOnItemClick(this)
+        headLinesAdapter.setUpdateListener(object : OnItemClickListener<Int> {
+            override fun onItemClick(item: Int) {
+                headLinesAdapter.currentList[item].let { headLines ->
+                    viewModel?.updateReadList(item, headLines.isInReadList, headLines.title)
+                }
+            }
 
+        })
         subscribeObserver()
     }
 
@@ -45,6 +52,9 @@ constructor(
             })
             category.observe(viewLifecycleOwner, {
                 viewModel?.getAllHeadLines(it)
+            })
+            isUpdateSuccessFull.observe(viewLifecycleOwner, { position ->
+                headLinesAdapter.updateHeadLines(position)
             })
         }
     }

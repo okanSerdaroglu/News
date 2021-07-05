@@ -1,14 +1,12 @@
 package com.example.news.db
 
-import androidx.room.Dao
+ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.news.data.local.headlines.HeadLinesCacheEntity
 import com.example.news.data.local.news.NewsCacheEntity
 import kotlinx.coroutines.flow.Flow
-import javax.annotation.Nullable
-
 
 @Dao
 interface NewsDao {
@@ -24,4 +22,7 @@ interface NewsDao {
 
     @Query("SELECT * FROM headlines")
     fun getAllHeadLines(): Flow<List<HeadLinesCacheEntity>?>
+
+    @Query("UPDATE headlines SET isInReadList = :isInReadList WHERE title = :title")
+    suspend fun updateReadList(title: String, isInReadList: Boolean?): Int
 }

@@ -8,8 +8,10 @@ interface HeadLinesRepository {
 
     suspend fun insertHeadLines(headLines: List<HeadLines>)
 
-    fun getAllHeadLines(category:String,page:Int): Flow<Resource<List<HeadLines>?>>
+    fun getAllHeadLines(category: String, page: Int): Flow<Resource<List<HeadLines>?>>
 
-    fun getAllHeadLinesDB(category:String,page:Int): Flow<Resource<List<HeadLines>?>>
+    fun getAllHeadLinesDB(category: String, page: Int): Flow<Resource<List<HeadLines>?>>
+
+    suspend fun updateHeadLinesReadListStatus(isInReadList: Boolean, title: String): Int
 
 }

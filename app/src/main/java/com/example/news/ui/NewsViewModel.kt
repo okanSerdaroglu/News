@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.news.data.HeadLines
 import com.example.news.data.News
 import com.example.news.ui.headlines.GetHeadLinesUseCase
+import com.example.news.ui.headlines.UpdateHeadLinesUseCase
 import com.example.news.ui.news.BaseViewModel
 import com.example.news.ui.news.GetNewsUseCase
 import com.example.news.util.Constants
@@ -18,7 +19,8 @@ class NewsViewModel
 @ViewModelInject
 constructor(
     private val getNewsUseCase: GetNewsUseCase,
-    private val getHeadLinesUseCase: GetHeadLinesUseCase
+    private val getHeadLinesUseCase: GetHeadLinesUseCase,
+    private val updateHeadLinesUseCase: UpdateHeadLinesUseCase
 ) : BaseViewModel() {
 
     private val _newsList = MutableLiveData<List<News>>()
@@ -29,6 +31,9 @@ constructor(
 
     private val _category = MutableLiveData<String>()
     val category: LiveData<String> = _category
+
+    private val _isUpdateSuccessFull = MutableLiveData<Int>()
+    val isUpdateSuccessFull: LiveData<Int> = _isUpdateSuccessFull
 
     private var page = 1
     private var totalCount = 0
@@ -61,6 +66,19 @@ constructor(
                 }
             }
         }
+    }
+
+    fun updateReadList(position: Int, isInReadList:Boolean, title:String?){
+        viewModelScope.launch {
+            title?.let {
+                val status = updateHeadLinesUseCase.updateHeadLine(getReadListStatus(isInReadList), it)
+                _isUpdateSuccessFull.value = if (status > 0) position else -1
+            }
+        }
+    }
+
+    private fun getReadListStatus (isInReadList: Boolean):Boolean{
+        return !isInReadList
     }
 
     fun setCategory(category: String) {

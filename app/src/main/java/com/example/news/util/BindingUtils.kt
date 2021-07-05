@@ -15,8 +15,8 @@ fun ImageView.setUrl(imageUrl: String?) {
 
 fun Context.openActivity(url: String) {
     if (!TextUtils.isEmpty(url)
-        && (url.startsWith("http://")
-                || (url.startsWith("https://")))
+        && (url.startsWith(Constants.HTTP_URL)
+                || (url.startsWith(Constants.HTTPS_URL)))
     ) {
         val i = Intent(Intent.ACTION_VIEW)
         i.data = Uri.parse(url)

@@ -22,4 +22,7 @@ constructor(
     fun getAllHeadLines(category: String, page: Int): Flow<List<HeadLinesCacheEntity>?> =
         newsDao.getAllHeadLines()
 
+    suspend fun updateReadList(isInReadList: Boolean, title: String): Int =
+        newsDao.updateReadList(isInReadList = isInReadList, title = title)
+
 }

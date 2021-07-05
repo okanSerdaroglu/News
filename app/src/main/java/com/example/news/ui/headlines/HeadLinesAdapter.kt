@@ -17,30 +17,49 @@ constructor(
 ) : ListAdapter<HeadLines, HeadLinesAdapter.HeadLinesViewHolder>(NewsDiffCallback()) {
 
     private var listener: OnItemClickListener<HeadLines>? = null
+    private var updateListener: OnItemClickListener<Int>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeadLinesViewHolder {
         return HeadLinesViewHolder(ItemHeadLineBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: HeadLinesViewHolder, position: Int) {
-        holder.onBind(getItem(position), listener)
+        holder.onBind(getItem(position), listener, updateListener)
     }
 
     fun setOnItemClick(listener : OnItemClickListener<HeadLines>?) {
         this.listener = listener
     }
 
+    fun setUpdateListener(updateListener: OnItemClickListener<Int>) {
+        this.updateListener = updateListener
+    }
+
     override fun submitList(list: List<HeadLines>?) {
         super.submitList(list?.let { ArrayList(it) })
     }
 
+    fun updateHeadLines(position: Int) {
+        notifyItemChanged(position)
+    }
+
     class HeadLinesViewHolder(private val binding: ItemHeadLineBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(item: HeadLines?, listener: OnItemClickListener<HeadLines>?) {
+        fun onBind(
+            item: HeadLines?,
+            listener: OnItemClickListener<HeadLines>?,
+            updateListener: OnItemClickListener<Int>?
+        ) {
             item?.let { headLines ->
                 binding.textViewTitle.text = headLines.title
                 binding.textViewDescription.text = headLines.description
                 binding.imageViewHeadLine.setUrl(headLines.urlToImage)
+                binding.textViewAddToList.apply {
+                    text = context.resources.getString(item.getAddToListTitle())
+                    setOnClickListener {
+                        updateListener?.onItemClick(adapterPosition)
+                    }
+                }
                 binding.root.setOnClickListener {
                     listener?.onItemClick(headLines)
                 }

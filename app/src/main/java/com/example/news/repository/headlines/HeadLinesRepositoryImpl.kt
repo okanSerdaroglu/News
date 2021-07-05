@@ -7,9 +7,11 @@ import com.example.news.repository.LocalDataSource
 import com.example.news.repository.RemoteDataSource
 import com.example.news.util.Constants
 import com.example.news.util.Resource
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class HeadLinesRepositoryImpl
@@ -37,7 +39,9 @@ constructor(
                             callMapper.mapFromEntity(it)
                         }
                         insertHeadLines(headLines)
-                        emit(Resource.success(headLines))
+                        getAllHeadLinesDB(category, page).collect {
+                            emit(it)
+                        }
                     } ?: getAllHeadLinesDB(category, page).collect {
                         emit(it)
                     }
@@ -64,6 +68,12 @@ constructor(
             } else {
                 emit(Resource.error(Constants.HEADLINES_NOT_FOUND, null))
             }
+        }
+    }
+
+    override suspend fun updateHeadLinesReadListStatus(isInReadList: Boolean, title: String) : Int {
+        return withContext(Dispatchers.IO){
+            localDataSource.updateReadList(isInReadList = isInReadList, title = title)
         }
     }
 

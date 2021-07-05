@@ -1,5 +1,7 @@
 package com.example.news.data
 
+import com.example.news.R
+
 data class HeadLines(
     val title: String?,
     val description: String?,
@@ -11,5 +13,16 @@ data class HeadLines(
         return title == (other as HeadLines).title
                 && description == other.description
                 && url == other.url
+    }
+
+    fun getAddToListTitle() : Int{
+        return when {
+            isInReadList -> {
+                R.string.remove_from_list
+            }
+            else -> {
+                R.string.add_to_list
+            }
+        }
     }
 }
