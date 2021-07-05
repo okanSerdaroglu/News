@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.news.data.HeadLines
-import com.example.news.databinding.ItemSourceBinding
+import com.example.news.databinding.ItemHeadLineBinding
 import com.example.news.util.OnItemClickListener
+import com.example.news.util.setUrl
 import javax.inject.Inject
 
 class HeadLinesAdapter
@@ -18,7 +19,7 @@ constructor(
     private var listener: OnItemClickListener<HeadLines>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeadLinesViewHolder {
-        return HeadLinesViewHolder(ItemSourceBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return HeadLinesViewHolder(ItemHeadLineBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: HeadLinesViewHolder, position: Int) {
@@ -33,13 +34,14 @@ constructor(
         super.submitList(list?.let { ArrayList(it) })
     }
 
-    class HeadLinesViewHolder(private val binding: ItemSourceBinding) :
+    class HeadLinesViewHolder(private val binding: ItemHeadLineBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(item: HeadLines?, listener: OnItemClickListener<HeadLines>?) {
             item?.let { headLines ->
-                binding.textViewName.text = headLines.title
+                binding.textViewTitle.text = headLines.title
                 binding.textViewDescription.text = headLines.description
-                binding.constraintLayoutItem.setOnClickListener {
+                binding.imageViewHeadLine.setUrl(headLines.urlToImage)
+                binding.root.setOnClickListener {
                     listener?.onItemClick(headLines)
                 }
             }

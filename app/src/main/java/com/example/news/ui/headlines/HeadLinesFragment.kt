@@ -1,5 +1,6 @@
 package com.example.news.ui.headlines
 
+
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -12,7 +13,9 @@ import com.example.news.ui.NewsViewModel
 import com.example.news.util.OnItemClickListener
 import com.example.news.util.RecyclerScrollListener
 import com.example.news.util.SpaceItemDecoration
+import com.example.news.util.openActivity
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class HeadLinesFragment
@@ -74,6 +77,6 @@ constructor(
     }
 
     override fun onItemClick(item: HeadLines) {
-
+       context?.openActivity(item.url!!)
     }
 }

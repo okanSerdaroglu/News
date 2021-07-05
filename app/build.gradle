@@ -100,6 +100,10 @@ dependencies {
     implementation libraries.navigation
     implementation libraries.navigationPlugin
 
+    // Glide
+    implementation libraries.glide
+    kapt libraries.glideKapt
+
     testImplementation libraries.jUnit
     testImplementation libraries.coroutinesTest
     testImplementation libraries.coreTesting
